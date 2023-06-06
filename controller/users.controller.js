@@ -1,5 +1,5 @@
 const pool = require("../database/index")
-const createFolder = require("../fileman/filemanager")
+const createFolder = require("../fileman/filemanager");
 const fs = require('fs');
 
 
@@ -142,26 +142,7 @@ const usersController = {
                 status: "success"
             })
             
-
-            ///////////////
-            const directoryPath = './audiofiles'
-
-            // Check if the directory already exists
-            if (!fs.existsSync(directoryPath)) {
-              fs.mkdirSync(directoryPath);
-            }
-          
-            // Check if the folder already exists
-            const folderPath = `${directoryPath}/${studycode}`
-            if (!fs.existsSync(folderPath)) {
-              fs.mkdirSync(folderPath);
-              console.log(`Folder "${studycode}" created successfully.`)
-            } else {
-              console.log(`Folder "${studycode}" already exists.`)
-            }
-            ///////////////
-            
-
+            createFolder.createFolder(studycode)
         }catch(error){
             console.log(error)
             res.json({
